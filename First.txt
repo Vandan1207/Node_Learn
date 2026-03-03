@@ -1,1 +1,10 @@
-Hi
+                            Namaste Node.js
+
+Few defination that will be learned later
+- Node js is a javaScript Runtime that is build on chrome V8 engine and executes javaScript outside browser
+- Node js has event driven architecture and capabale of asyncronus I/O (Non- blocking I/O)
+
+History 
+    - So Inside node we write javaScript and in order to execute javaScript we need javaScript engine
+    - ** When their is javaScript we need js Engine to execute it ** 
+    -  
