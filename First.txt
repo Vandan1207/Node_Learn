@@ -7,4 +7,9 @@ Few defination that will be learned later
 History 
     - So Inside node we write javaScript and in order to execute javaScript we need javaScript engine
     - ** When their is javaScript we need js Engine to execute it ** 
-    -  
+    -  So in the intial days fireFox js browser engine was used but within 2days the developer shifted to v8 engine for developing node.js
+    - ** we know that js is responsible for all the dynamic behaviour we see on the website **
+    - Earlier Apache server was used to create blocking server, he wanted to created non blocking server thats why nodejs came into play
+    - Intially the name was web.js but the developer realized its more that just creating web-server hence it renamed to node.js
+    - Then NPM was made, it is like registory where we can create/store packages that can be used in the program
+    
