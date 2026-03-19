@@ -13,3 +13,18 @@ History
     - Intially the name was web.js but the developer realized its more that just creating web-server hence it renamed to node.js
     - Then NPM was made, it is like registory where we can create/store packages that can be used in the program
     
+
+                        Node.js - JS on Server
+Server - A remote computer, machine , CPU which takes request and does some computation and response to that request 
+Earlier it was js in the frontend and in backend their were java, php. but after nodejs we can run js on server
+
+V8 - its a js engine build using c++ , it executes js and can be embedded in any c++ applications
+
+EcmaScript - it is a standard/rules that is being used by many scripting languages such as javaScript , and also js engine must follow EcmaScript standard
+
+So if V8 can executes js then why not just put v8 on the server and use it , why the need to nodejs ?
+Inside Node their is v8 which is only use to execute js but node also provide api on server, set of fuctions such as fetching 
+data from the database etc, which makes node js super powerful
+
+
+
