@@ -26,5 +26,47 @@ So if V8 can executes js then why not just put v8 on the server and use it , why
 Inside Node their is v8 which is only use to execute js but node also provide api on server, set of fuctions such as fetching 
 data from the database etc, which makes node js super powerful
 
+**
+Node.js = Runtime Environment for JavaScript built on Chrome V8 engine
+
+Meaning:
+
+It takes JavaScript code
+Uses V8 engine (from Chrome) to run it
+Adds extra features like file system, network, server, etc.
+     
+So Node.js gives JavaScript superpowers outside browser.
+**
 
 
+-- Installation
+So we need to install nodejs , it is kind off applications that will enable the use of js outside the browser and provide
+with server, file system, event loop etc..
+Also when ever we install nodejs on system, it comes with npm(node package manager) it is an offical tool for nodejs to 
+manages libraries 
+
+what is npm & why the need for it? - So a real world project will have many libraries/ dependency it will not build
+things manually like creating a server through express, Need MySQL driver - Without npm, installing these manually would be very hard.
+So npm is bundled because Node.js ecosystem depends on packages.
+
+You don’t need npm if: You run simple JS files 
+npm has alternatives like yarn, pnmp  which are infact faster than npm
+
+
+** Node REPL ( Read, Evalute, Print, Loop) **
+So if we want to run js, Node provides a program where it provides an Environment where we can run js code and it will get executed
+and that is why we say nodejs provides javaScript runtime Environment
+
+** (An Jargon/ things to know what node provides)
+
+Global Object - As we know that global objects in JavaScript provides fuctions like setTimeout, setInterval 
+and many other like console.log etc..
+
+In browser this refers to window which is an global object but provided by the browser
+this,window both refers to global object provided by browser not v8 engine
+
+Node js also provide global object and the term is global, so global object is not provided by v8 it is provided
+by node in nodejs, thus nodejs also needs to give access to v8 in order to execute where the reference of global
+object is used in the program
+
+**
