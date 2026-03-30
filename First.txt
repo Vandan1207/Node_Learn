@@ -152,3 +152,41 @@ libuv is a multi-platform C library. It was originally written for Node.js to pr
 like Linux, macOS, and Windows.
 
 It is a library inside Nodejs
+
+-----
+Now coming to async I/O operations in Node, it is being handled by libuv, but if all the async I/O gives output at the 
+same time than the order of execution may look like this, here we can't say perfectly as it depends on which callback
+gets gives output file even microseconds matter , so this is an upper manetal model to think off , no need to remember
+The only thing to remember all the syncronous task gets executed first
+
+
+1. Run all synchronous code
+2. Run process.nextTick queue
+3. Run Promise microtasks
+4. Run timers (setTimeout)
+5. Run I/O callbacks (fs, network)
+6. Repeat
+
+
+libuv also provides function like readFileSync() meaning whenever v8 encounters this line, it will handle to libuv
+for execution as v8 doesnt have power to read/write file but will not move further in the program until the operations
+is completed , this is also known as blocking the main thread , also a sync function will never take a callback, why?
+A async function takes a callback and when the aysnc function completes it execution then it pushes the callback into the 
+callstack for execution, but if the function is sync meaning thread  will wait until execution is completed then whats the need 
+for a callback.
+
+
+-----
+JUST FOR INFO
+
+setTimeout, setInterval, clearTimeout, clearInterval, etc. are attached to the global object automatically by the runtime.
+
+In Node.js, the global object is called global.
+
+So internally, this works:
+
+global.setTimeout(() => {
+  console.log("Hi");
+}, 1000);
+
+But Node exposes those global functions directly into the global scope
