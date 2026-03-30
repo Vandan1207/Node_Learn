@@ -143,3 +143,12 @@ How require('path') works underthe hood
 
 -----
 
+We know that js is single threaded syncronous language and it alone can't perform async, timer, api task
+So Nodejs provides this powers of fetching data over server, reading file and timer by talking to OS
+So inside Node thier is a library called libuv , which handles all the task of talking/performing with OS
+
+
+libuv is a multi-platform C library. It was originally written for Node.js to provide a consistent API for asynchronous I/O operations across different operating systems
+like Linux, macOS, and Windows.
+
+It is a library inside Nodejs
