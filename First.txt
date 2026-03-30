@@ -46,7 +46,8 @@ Also when ever we install nodejs on system, it comes with npm(node package manag
 manages libraries 
 
 what is npm & why the need for it? - So a real world project will have many libraries/ dependency it will not build
-things manually like creating a server through express, Need MySQL driver - Without npm, installing these manually would be very hard.
+things manually like creating a server through express, Need MySQL driver, all this things we don’t write from
+scratch this we download it as a package - so npm helps installing these manually would be very hard.
 So npm is bundled because Node.js ecosystem depends on packages.
 
 You don’t need npm if: You run simple JS files 
@@ -69,4 +70,47 @@ Node js also provide global object and the term is global, so global object is n
 by node in nodejs, thus nodejs also needs to give access to v8 in order to execute where the reference of global
 object is used in the program
 
+js knows that their is a global object as EcmaScript standard says so and runtime decides what global object be like and would
+map/ give access to js engine the global object
+
 **
+
+In a project we will have multiple file where we will write js code, a file is called a module in js
+so if we want to execute another modules code/program into another module that we can do it by calling/executing 
+that module by the means of require('file path')
+
+Now when we use require to execute a module, it will execute that module but we can't use variables
+or methods of that module inside another module, as the members in the module are protected and prevents from leaking
+and logically thinking too it should be like that too if i have a module and inside their i use some variables
+and do some operations around it and i use that module inside another module where same naming of variables took place then
+their would be errors
+
+so if we want to use fuctions/variables of another module we need to export and inside that module where we are using 
+it the require will return all the exports of that module and we can import from the require 
+
+var a =10;
+function xyz(){
+    //does something
+}
+
+module.exports ={ a:a,xyz:xyz}
+
+const{a,xyz} = require('module path');
+
+This is also know commonjs export which is by default in node
+
+2nd way ( ES Modules)
+here we have to config our package.json file but we can directly export fuctions
+
+export function xyc(){
+
+}
+
+import exz from '../dw';
+
+it is by default used in react, angular etc..
+
+
+Main Difference between both
+commonjs- non-strict mode, syncronous way of executing modules
+es module - strict mode, provides aysnc way to execute modules
