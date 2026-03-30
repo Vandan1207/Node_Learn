@@ -114,3 +114,32 @@ it is by default used in react, angular etc..
 Main Difference between both
 commonjs- non-strict mode, syncronous way of executing modules
 es module - strict mode, provides aysnc way to execute modules
+
+
+-----
+
+Just For conetxt, no need to remeber (Context only)
+
+As we know that in js program if a fuction is executed then it creates function execution context and also has lexcial scope of 
+its parents, so simillarly when a module is being exported and executed in another module then it will be wrapped around a function
+and then executed thats the reason why the module can't access the code of the exported module until variables/fuctions are being 
+explicilty exported , this function wrapped is IFFE function
+
+Q - How are variables & fuctions private in different module?
+Ans - IFFE & require
+
+Q - How do we get access to module.export ?
+Ans - Node js provides it and when the module gets wrapped by an IFFE, then the function automatically passes module and require 
+as parameter by Node, intially module.export ={} is an empty object 
+
+-----
+How require('path') works underthe hood
+
+1. Resolving the module (as it could be of any type - json, js , internal node module)
+2. Loading the content
+3. Wrapped by IFFE
+4. Evaluation ( module.export)
+5. caching 
+
+-----
+
