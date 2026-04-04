@@ -113,7 +113,7 @@ it is by default used in react, angular etc..
 
 Main Difference between both
 commonjs- non-strict mode, syncronous way of executing modules
-es module - strict mode, provides aysnc way to execute modules
+es module - strict mode, provides aysnc way to execute modules , defer by default
 
 
 -----
@@ -123,7 +123,7 @@ Just For conetxt, no need to remeber (Context only)
 As we know that in js program if a fuction is executed then it creates function execution context and also has lexcial scope of 
 its parents, so simillarly when a module is being exported and executed in another module then it will be wrapped around a function
 and then executed thats the reason why the module can't access the code of the exported module until variables/fuctions are being 
-explicilty exported , this function wrapped is IFFE function
+explicilty exported , this function wrapped is IFFE function (taking about require export)
 
 Q - How are variables & fuctions private in different module?
 Ans - IFFE & require
@@ -190,3 +190,10 @@ global.setTimeout(() => {
 }, 1000);
 
 But Node exposes those global functions directly into the global scope
+
+-----
+Just in time complilation
+v8 uses interpretor - ignition interpretor
+complier - turbofan
+
+
