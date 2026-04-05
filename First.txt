@@ -271,6 +271,8 @@ wait for any thread from the thread pool to complete so that it can uses thread 
 
 UV_THREADPOOL_SIZE = 4
 
+we can change the thread size by using this line - process.env.UV_THREADPOOL_SIZE = 35
+
 Now for this all task, libuv uses thread otherwise it can execute task normally too 
 - fs, dsn.lookup, crypto, user specified input
 
@@ -285,5 +287,42 @@ handle that request so if we create one thread per connection , then if their ar
 if we create thousands of thread than its not a good way to handle it , even though mordern linux system can handle 20-30k thread 
 but libuv does more feasible like libuv interacts with OS and uses algorithm such as epoll (linux)  and kqueue (mac) bundles all 
 this connections and handle it together, this algorithm is known as scalable I/O event notificaiton mechanism 
+
+-----
+Socket v/s Web-Socket
+
+Socket - it is used to make connection with client and server and once the request is completed then socket gets closed
+Web socket - it is persistent socket which holds the connection for a long time 
+
+
+TCP/IP = the road system and delivery trucks
+HTTP = one specific language/protocol riding on top of those roads
+
+HTTP is an application-level protocol used mainly by browsers, APIs, and web servers.
+HTTP usually runs on top of TCP.
+
+Browser connects to server using TCP
+Browser sends an HTTP request like GET /home
+Server sends back an HTTP response like HTML, JSON, images, etc.
+
+
+Imagine ordering food:
+IP = knowing the restaurant address
+TCP = making sure the whole order reaches you correctly
+HTTP = the actual language used: “I want 1 pizza and 2 drinks”
+-----
+
+Creating a Server , HTTP server using Nodejs , an http server can be created using any language like python etc.
+
+Inside node their is http module which is core node module used to create http server
+
+const http = require('http');
+
+const server = http.createServer((req,res)=>{
+  res.end('daw');
+});
+server.listen(port-number);
+
+-----
 
 
