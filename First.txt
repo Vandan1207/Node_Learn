@@ -226,6 +226,7 @@ how event loop assigns priority between callback queue? like which one to execut
 
 Phases 
 Timer -> setTimeout,setInterval
+pending callback -> executes I/O callbacks deferred to next loop iteration
 pool -> incoming connections, data, fs, crypto, http.get
 check -> setImmediate
 close -> socket.on("close")
@@ -253,15 +254,36 @@ which is check phase it runs internal loop and their it checks the process queue
 then it runs it and then move to all the phases then comes to timer phase again and sees the callback function and executes it
 
 
+-----
+
+One full cycle is known as tick of event loop  
+
+3 main components of libuv library are eventloop, callback queue, thread pool
+
+Thread pool - as we know that js is single threaded synchronous language, and v8 sends the async operations to libuv
+so v8 doesn't block the main thread, now for libuv inorder to execute the operations , it takes a thread from the thread pool
+and then uses that thread to execute that async task 
+
+whenever the thread complete the execution that it is now available in the thread pool
+
+Now in nodejs the threadpool by default has only 4 threads and any other async task needs to be performed that it needs to 
+wait for any thread from the thread pool to complete so that it can uses thread to execute it 
+
+UV_THREADPOOL_SIZE = 4
+
+Now for this all task, libuv uses thread otherwise it can execute task normally too 
+- fs, dsn.lookup, crypto, user specified input
+
+Is Nodejs single threaded or multi-threaded ? 
+Ans - depends like if their is any async code in program and it does the above operation than yeah node js is multi-threaded
+but if their is simple sync code then it is single threaded 
+
+Some Deep Dive (Just for FYI)
+So lets suppose their is a request on your server, and in order to make any request, their should be connection establieshed 
+and it is done by the means of sockets, now if we want to handle that request, like write some response so we need a thread to
+handle that request so if we create one thread per connection , then if their are multiple/thousands request coming to server than 
+if we create thousands of thread than its not a good way to handle it , even though mordern linux system can handle 20-30k thread 
+but libuv does more feasible like libuv interacts with OS and uses algorithm such as epoll (linux)  and kqueue (mac) bundles all 
+this connections and handle it together, this algorithm is known as scalable I/O event notificaiton mechanism 
 
 
-100millio syncronous code 
-if Promise is given more priority then we would write api call in it and if the queue would have 10 things to execute
-then it would push promise into callstack first as it has higher priority
-
-
-
-is promsie callbacks same as aysnc callbacks
-
-event loop is in pool phase and a callback func comes in timer then will it complete the whole cycle ?
-what if no timer passed in setimeout / setInterval
