@@ -196,4 +196,72 @@ Just in time complilation
 v8 uses interpretor - ignition interpretor
 complier - turbofan
 
+So like our code when gets executed by v8 engine, how code is being executed is discussed like 
+first the code gets parsed, inside parsing their is phase of tokenization , then abstract syntax tree 
+then code is sent to interpretor and it generates byte code , all of this is also previously discussed when learning
+JavaScript, then the code is sent for execution when all the stuff of run-time like global context execution, and phases and
+all takes place, remeber event loop was provided by browser not v8
 
+
+-----
+Their are 2 main component in nodejs 
+1. v8 engine
+2. libuv
+
+coming to libuv
+
+So it is a library in nodejs which provide provide a consistent API for asynchronous I/O operations / Non - blocking operations
+across different operating systems like Linux, macOS, and Windows.
+
+Inside libuv - callback queue, thread pool, event loop
+
+callback queue - whenever v8 engine see aysnc operations it handles to libuv so when async code is executed and syncronous code
+is still being executed by v8 so when the async code gets executed and sees v8 is still executing the code, means callstack is not 
+empty then libuv will send the callback functions in callback queue, their are multiple type of async code like file read, request 
+over server, timers etc, so their are different type of callback queue for async code 
+
+event loop - constently checks if their is and code in callback queue and if the callstack is empty or not 
+
+how event loop assigns priority between callback queue? like which one to execute first?
+
+Phases 
+Timer -> setTimeout,setInterval
+pool -> incoming connections, data, fs, crypto, http.get
+check -> setImmediate
+close -> socket.on("close")
+
+Internal loop 
+process.nextTick()
+promise callbacks
+
+so whenever stack becomes empty then eventloop will check if their is any functions present in our callback and if their are
+multiple then it will first do the internal loop checks if any functions that are present in process or promise queue then 
+would follow the upper loop where it will go the phase wise but moving from one phase to another like if their is no callback 
+function present in the timer queue then it would go to pool queue but before going it will check the internal loop again if
+any callback function is present in any of the queue in the internal loop.
+
+Thus in this way event loop goes executes in phases and sets the priority, although we are understanding this process 
+but sometimes the exectution may work differently where we see timer exected later as it came late but pool exectued first
+as it was executed and was present in the callback for exectution
+
+Advance Concept - event loop waits at pool phase
+
+Questions 
+Lets suppose we are in pool phase , and thier is a callback in the queue (pool queue) , and when executed it calls promise and a timer
+then will the event loop goes back to timer phase to execute it ? - No, it will move to next phase and before moving to next phase \
+which is check phase it runs internal loop and their it checks the process queue and then promise queue where it sees a callback function
+then it runs it and then move to all the phases then comes to timer phase again and sees the callback function and executes it
+
+
+
+
+100millio syncronous code 
+if Promise is given more priority then we would write api call in it and if the queue would have 10 things to execute
+then it would push promise into callstack first as it has higher priority
+
+
+
+is promsie callbacks same as aysnc callbacks
+
+event loop is in pool phase and a callback func comes in timer then will it complete the whole cycle ?
+what if no timer passed in setimeout / setInterval
