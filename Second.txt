@@ -32,3 +32,21 @@ app.listen(7777,()=>{
 
 nodemon -> rather than  closing and running the server everytime we make changes, nodemon does it everytime we make changes
 
+-----
+postman -> it is hard to do post call through broswer so postman is a software their is used to test our api
+
+coming back to express now to handle different http methods we will use different methods express provide to handle different http methods
+such as 
+app.get()
+app.delete()
+app.post()
+app.put()
+app.patch()
+
+app.use() is a common method that can handle all the method but the above will only that that method for that perticular path
+
+Remember - order matters when writing this methods
+
+we can use query for taking things from dynamic route, then their is something called params 
+
+
