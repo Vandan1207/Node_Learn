@@ -49,4 +49,26 @@ Remember - order matters when writing this methods
 
 we can use query for taking things from dynamic route, then their is something called params 
 
+-----
+app.get(path,(req,res,next)=>{
+    // this is known as request handler function
+    next()
+},()=>{
+    // we can handle multiple handler function
+})
+
+next -> it will move the execution to next handler function 
+
+** if their is no send() which is use to send response back to the request , and if we not write it than the request will 
+run infinity and broswer will terminate it after a time a time interval
+
+**
+Theory 
+whenever a request is coming then express will check all the function and checks the matching url, and the one function
+which send the response is known as handler function, and then express doesn't move forward, and all the function in between 
+is known as middileware
+
+middileware is a function that runs between a request and response and can be used in many ways like authorization, business logic etc..
+
+
 
