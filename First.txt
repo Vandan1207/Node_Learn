@@ -323,6 +323,31 @@ const server = http.createServer((req,res)=>{
 });
 server.listen(port-number);
 
+
+So we imported the module from node, which is a core module and then we created a instanse of server, just like we created 
+instance(object) of class and then we know that in a system their are multiple program hence we assigned a port number to that 
+server
+
+In production we uses a framework called Express which is used to create http server
+
 -----
+MongoDB 
+
+ways to install
+1. download the package and install locally 
+2. MongoDB on server (MongoDB manages it)
 
 
+So now we will use the 2nd way of running MongoDB as we can also learn how database is run on server
+through MongoDB website we can create our own cluster meaning our own database on server
+MongoDB Compass is a application/user interface that helps visualize data being over that cluster, we need to config
+our cluster and mongodb compass and we are good to go
+
+now if we want our application/program to interact with our cluster than we need to install a module/package,  
+syntax - npm i mongodb
+
+now through documentation we can config how to connncet our program to mongodb cluster and then how to setup 
+a connection access database, collection, documents etc..
+
+In real world project we uses a package called mongooes that does all this connection and manupluation of documents over
+mongodb
