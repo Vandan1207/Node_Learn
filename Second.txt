@@ -1,0 +1,34 @@
+Monolith  - frontend , backend, email, auth - one big repo  and all thing inside it 
+
+Microservice - small service (project) , running indepedently, frontend can be different project, backend can be different, auth, email etc..
+
+Express.js
+it is a web framework used to create webserver, it is easy to create fast, less redundant code 
+
+we can install express -> npm i express
+
+package.json -> meta data about the project, what dependencies the project is using
+example ->
+    express:"^4.19.3"
+    3-> patch
+    19-> minor (backward compatible)
+    4-> major (may have major changes, now their could be changes affecting our project)
+    ^ -> upgrade to minor and patch changes automatically
+    ~ -> patch updates only
+
+Syntax for creating server using express
+
+const express = require("express");
+const app = express();
+
+app.use("/ooo",(req,res)=>{
+    res.send("listening on ooo path")
+})
+
+app.listen(7777,()=>{
+    console.log("server is running")
+})
+
+
+nodemon -> rather than  closing and running the server everytime we make changes, nodemon does it everytime we make changes
+
