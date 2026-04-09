@@ -5,6 +5,33 @@ Microservice - small service (project) , running indepedently, frontend can be d
 Express.js
 it is a web framework used to create webserver, it is easy to create fast, less redundant code 
 
+why need for express?
+
+Yes — you can absolutely build a web server using only Node's built-in http module.
+Because once your app becomes larger, writing everything manually with the http module becomes repetitive, messy, and hard to maintain.
+
+Imagine your app grows and you need:
+Routing
+JSON responses
+Parsing request body
+Middleware
+Authentication
+Logging
+Error handling
+
+
+Express is built on top of Node's http
+Express is not replacing Node's http module.
+Internally, Express still uses it.
+
+Main things Express provides
+1. Easier routing
+2. Middleware system
+3. Better request and response objects
+4. URL parameters become easy
+6. Built-in ecosystem of middleware
+
+
 we can install express -> npm i express
 
 package.json -> meta data about the project, what dependencies the project is using
@@ -70,5 +97,23 @@ is known as middileware
 
 middileware is a function that runs between a request and response and can be used in many ways like authorization, business logic etc..
 
+As we know that order matters when defining routing / request handler , so how does middileware comes into play , is like 
+on the top of all the methods we will define middileware, which is nothing but a request handler only, and it could for a 
+perticular path or could be all the apis that hit , Syntax is somewhat like this 
 
+app.use('/',(req,res,next)=>{
+    // some checking , auth, etc..
+    next();
+})
 
+---
+app.use() v/s app.all()
+
+lets take a senario where the path is /users , so when we mention   this path in app.use(), all other apis with path /users/xyz , will be passed
+through this app.use, but if we mention the same path in app.all, all the api request(get,put,post,patch) for that perticular path will only be 
+passed through it
+
+---
+Total number of parameters provided by express
+
+app.get(path,(err,req,res,next)=>{})
