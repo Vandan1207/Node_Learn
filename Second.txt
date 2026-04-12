@@ -117,3 +117,65 @@ passed through it
 Total number of parameters provided by express
 
 app.get(path,(err,req,res,next)=>{})
+
+
+---
+Few things about HTTP method, RestAPI
+
+
+HTTP -  it is a protocol for communicating over the internet
+
+HTTP header - (metadata) - key:value sent along with request & response
+usecase - caching, Authentication, manage state 
+
+standard - name start with X-custom header for your custom header
+
+HTTP method - Basic set of opertation that can be used to interact with server
+GET : retrive a message 
+HEAD : No message body (response header only)
+OPTIONS : what opertation are available
+TRACE : loopback test (get some data)
+DELETE : remove a resource
+PUT : replace a resource
+POST : interact with resource
+PATCH : partial change in a resource 
+
+HTTP Status Code 
+1xx - Informational
+2xx - Success
+3xx - Redirection
+4xx - Client Error
+5xx - Server Error 
+
+
+
+HTTPS - Their is an add on layer where in between the req and res, the data is encrypted 
+
+
+RestAPI is a standard, which tells how an API should be made, it works on client-server architecture 
+Their are 2 types of response, when it comes to client server architecture and it is also connected to how they are 
+used for rendering, 1st - json where the data sent to client and based on it data will be either used for calculating, or 
+rendering it on broswer, etc.. 2nd - html , where in the server based on the req we will sent the res as html, this is also 
+known as SSR (Server side rendering) , it would only work if we know that the client is always a broswer, not another server
+It uses HTTP, HTTP methods , but provides a standard/way on how to build using http method
+
+URI = the general concept , URL = where something is 
+
+
+URI (Uniform Resource Identifier)
+A URI is any string that identifies a resource.
+
+
+URL (Uniform Resource Locator)
+A URL is a type of URI that tells you where a resource is and usually how to access it.
+
+
+In HTTP
+In everyday web development:
+People often say “URL” when talking about a web address
+Browsers mostly deal with URLs like https://google.com
+HTTP requests use URLs to locate resources
+URI is the more formal and broader term used in standards
+
+---
+
