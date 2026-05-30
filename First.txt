@@ -202,7 +202,102 @@ then code is sent to interpretor and it generates byte code , all of this is als
 JavaScript, then the code is sent for execution when all the stuff of run-time like global context execution, and phases and
 all takes place, remeber event loop was provided by browser not v8
 
+when the execution phase start this all things comes into play, just a quick revision/refresher 
+Execution Starts
 
+Now execution begins.
+
+This is where JavaScript concepts come into play:
+
+var a = 10;
+
+function greet() {
+    console.log("Hello");
+}
+
+greet();
+
+During execution:
+
+Global Execution Context is created
+Memory Phase
+↓
+Execution Phase
+
+Things like:
+
+Hoisting
+Scope chain
+Function execution contexts
+Call stack
+
+all happen here.
+
+For example:
+
+greet();
+
+creates a new function execution context and pushes it onto the call stack.
+
+Call Stack
+
+greet()
+Global()
+
+After greet() finishes:
+
+Call Stack
+
+Global()
+Where does the Event Loop fit?
+
+A common misconception is:
+
+Event Loop is part of V8.
+
+It is not.
+
+V8 only provides:
+
+Call Stack
+Memory Heap
+Execution of JavaScript
+
+The environment (browser or Node.js) provides:
+
+Event Loop
+Timers
+Web APIs
+DOM APIs
+Fetch APIs
+
+Example:
+
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
+
+V8 itself doesn't know how to wait for 1 second.
+
+Browser does:
+
+V8
+ |
+ | setTimeout(...)
+ |
+Browser Timer API
+ |
+ | waits 1 second
+ |
+Callback Queue
+ |
+Event Loop
+ |
+Call Stack
+
+So yes:
+
+Event Loop is provided by the runtime environment (Browser or Node.js), not by V8 itself.
 -----
 Their are 2 main component in nodejs 
 1. v8 engine
